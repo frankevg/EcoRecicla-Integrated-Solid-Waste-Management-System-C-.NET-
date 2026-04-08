@@ -1,0 +1,36 @@
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\Negocio.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\Negocio.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.dll.config
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\bin\Debug\EntityFramework.xml
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\PASADAS\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\Negocio.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\Negocio.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.dll.config
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\bin\Debug\EntityFramework.xml
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\Negocio.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\Negocio.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.pdb
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\Datos.dll.config
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\bin\Debug\EntityFramework.xml
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.dll
+C:\Users\PC\source\repos\TRABAJOPARCIAL\Nueva carpeta\TRABAJOPARCIAL\Negocio\obj\Debug\Negocio.pdb
