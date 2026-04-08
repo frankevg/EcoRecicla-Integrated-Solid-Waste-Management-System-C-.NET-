@@ -1,0 +1,953 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_EcoReciclaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asignacion">
+          <Key>
+            <PropertyRef Name="AsignacionID" />
+          </Key>
+          <Property Name="AsignacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrdenID" Type="int" />
+          <Property Name="VehiculoID" Type="int" />
+          <Property Name="ConductorID" Type="int" />
+          <Property Name="TurnoID" Type="int" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RUC" Type="varchar" MaxLength="20" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Conductor">
+          <Key>
+            <PropertyRef Name="ConductorID" />
+          </Key>
+          <Property Name="ConductorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DNI" Type="varchar" MaxLength="20" />
+          <Property Name="Licencia" Type="varchar" MaxLength="20" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="EstadoOrden">
+          <Key>
+            <PropertyRef Name="EstadoOrdenID" />
+          </Key>
+          <Property Name="EstadoOrdenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEstado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogInicioSesion">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="FechaHora" Type="datetime" />
+          <Property Name="DireccionIP" Type="varchar" MaxLength="45" />
+          <Property Name="Exito" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrdenRecojo">
+          <Key>
+            <PropertyRef Name="OrdenID" />
+          </Key>
+          <Property Name="OrdenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteID" Type="int" />
+          <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+          <Property Name="FechaRecojo" Type="date" />
+          <Property Name="Horario" Type="varchar" MaxLength="20" />
+          <Property Name="EstadoOrdenID" Type="int" />
+          <Property Name="TipoResiduoID" Type="int" />
+          <Property Name="Cantidad" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreRol" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoResiduo">
+          <Key>
+            <PropertyRef Name="TipoResiduoID" />
+          </Key>
+          <Property Name="TipoResiduoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clasificacion" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="RequiereManejoEspecial" Type="bit" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="TurnoID" />
+          </Key>
+          <Property Name="TurnoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HorarioInicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="HorarioFin" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContraseñaHash" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RolID" Type="int" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UsuarioCliente">
+          <Key>
+            <PropertyRef Name="UsuarioClienteID" />
+          </Key>
+          <Property Name="UsuarioClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="ClienteID" Type="int" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="VehiculoID" />
+          </Key>
+          <Property Name="VehiculoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Placa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="20" />
+          <Property Name="Modelo" Type="varchar" MaxLength="20" />
+          <Property Name="TipoVehiculo" Type="varchar" MaxLength="50" />
+          <Property Name="CapacidadTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Disponible" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Asignacio__Condu__5EBF139D">
+          <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
+          <End Role="Asignacion" Type="Self.Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="ConductorID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="ConductorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asignacio__Orden__5CD6CB2B">
+          <End Role="OrdenRecojo" Type="Self.OrdenRecojo" Multiplicity="0..1" />
+          <End Role="Asignacion" Type="Self.Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenRecojo">
+              <PropertyRef Name="OrdenID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="OrdenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asignacio__Vehic__5DCAEF64">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="0..1" />
+          <End Role="Asignacion" Type="Self.Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="VehiculoID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="VehiculoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LogInicio__Usuar__5629CD9C">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="LogInicioSesion" Type="Self.LogInicioSesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="LogInicioSesion">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenReco__Clien__59063A47">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="OrdenRecojo" Type="Self.OrdenRecojo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="OrdenRecojo">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenReco__Estad__59FA5E80">
+          <End Role="EstadoOrden" Type="Self.EstadoOrden" Multiplicity="0..1" />
+          <End Role="OrdenRecojo" Type="Self.OrdenRecojo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoOrden">
+              <PropertyRef Name="EstadoOrdenID" />
+            </Principal>
+            <Dependent Role="OrdenRecojo">
+              <PropertyRef Name="EstadoOrdenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__RolID__5535A963">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioCl__Clien__5812160E">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="UsuarioCliente" Type="Self.UsuarioCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="UsuarioCliente">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioCl__Usuar__571DF1D5">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="UsuarioCliente" Type="Self.UsuarioCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="UsuarioCliente">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asignacion_Turno">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="1" />
+          <End Role="Asignacion" Type="Self.Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="TurnoID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="TurnoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenRecojo_TipoResiduo">
+          <End Role="TipoResiduo" Type="Self.TipoResiduo" Multiplicity="0..1" />
+          <End Role="OrdenRecojo" Type="Self.OrdenRecojo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoResiduo">
+              <PropertyRef Name="TipoResiduoID" />
+            </Principal>
+            <Dependent Role="OrdenRecojo">
+              <PropertyRef Name="TipoResiduoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="db_EcoReciclaModelStoreContainer">
+          <EntitySet Name="Asignacion" EntityType="Self.Asignacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conductor" EntityType="Self.Conductor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoOrden" EntityType="Self.EstadoOrden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogInicioSesion" EntityType="Self.LogInicioSesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenRecojo" EntityType="Self.OrdenRecojo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoResiduo" EntityType="Self.TipoResiduo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioCliente" EntityType="Self.UsuarioCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Asignacio__Condu__5EBF139D" Association="Self.FK__Asignacio__Condu__5EBF139D">
+            <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asignacio__Orden__5CD6CB2B" Association="Self.FK__Asignacio__Orden__5CD6CB2B">
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asignacio__Vehic__5DCAEF64" Association="Self.FK__Asignacio__Vehic__5DCAEF64">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LogInicio__Usuar__5629CD9C" Association="Self.FK__LogInicio__Usuar__5629CD9C">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LogInicioSesion" EntitySet="LogInicioSesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenReco__Clien__59063A47" Association="Self.FK__OrdenReco__Clien__59063A47">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenReco__Estad__59FA5E80" Association="Self.FK__OrdenReco__Estad__59FA5E80">
+            <End Role="EstadoOrden" EntitySet="EstadoOrden" />
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__RolID__5535A963" Association="Self.FK__Usuario__RolID__5535A963">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioCl__Clien__5812160E" Association="Self.FK__UsuarioCl__Clien__5812160E">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="UsuarioCliente" EntitySet="UsuarioCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioCl__Usuar__571DF1D5" Association="Self.FK__UsuarioCl__Usuar__571DF1D5">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioCliente" EntitySet="UsuarioCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asignacion_Turno" Association="Self.FK_Asignacion_Turno">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenRecojo_TipoResiduo" Association="Self.FK_OrdenRecojo_TipoResiduo">
+            <End Role="TipoResiduo" EntitySet="TipoResiduo" />
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_EcoReciclaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="OrdenRecojo" Relationship="Self.FK__OrdenReco__Clien__59063A47" FromRole="Cliente" ToRole="OrdenRecojo" />
+          <NavigationProperty Name="UsuarioCliente" Relationship="Self.FK__UsuarioCl__Clien__5812160E" FromRole="Cliente" ToRole="UsuarioCliente" />
+        </EntityType>
+        <EntityType Name="Conductor">
+          <Key>
+            <PropertyRef Name="ConductorID" />
+          </Key>
+          <Property Name="ConductorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Licencia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="Asignacion" Relationship="db_EcoReciclaModel.FK__Asignacio__Condu__5EBF139D" FromRole="Conductor" ToRole="Asignacion" />
+        </EntityType>
+        <EntityType Name="EstadoOrden">
+          <Key>
+            <PropertyRef Name="EstadoOrdenID" />
+          </Key>
+          <Property Name="EstadoOrdenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEstado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrdenRecojo" Relationship="Self.FK__OrdenReco__Estad__59FA5E80" FromRole="EstadoOrden" ToRole="OrdenRecojo" />
+        </EntityType>
+        <EntityType Name="LogInicioSesion">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="FechaHora" Type="DateTime" Precision="3" />
+          <Property Name="DireccionIP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Exito" Type="Boolean" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__LogInicio__Usuar__5629CD9C" FromRole="LogInicioSesion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="OrdenRecojo">
+          <Key>
+            <PropertyRef Name="OrdenID" />
+          </Key>
+          <Property Name="OrdenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID" Type="Int32" />
+          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaRecojo" Type="DateTime" Precision="0" />
+          <Property Name="Horario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoOrdenID" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__OrdenReco__Clien__59063A47" FromRole="OrdenRecojo" ToRole="Cliente" />
+          <NavigationProperty Name="EstadoOrden" Relationship="Self.FK__OrdenReco__Estad__59FA5E80" FromRole="OrdenRecojo" ToRole="EstadoOrden" />
+          <Property Name="TipoResiduoID" Type="Int32" />
+          <Property Name="Cantidad" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="TipoResiduo" Relationship="db_EcoReciclaModel.FK_OrdenRecojo_TipoResiduo" FromRole="OrdenRecojo" ToRole="TipoResiduo" />
+          <NavigationProperty Name="Asignacion" Relationship="db_EcoReciclaModel.FK__Asignacio__Orden__5CD6CB2B" FromRole="OrdenRecojo" ToRole="Asignacion" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreRol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__RolID__5535A963" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoResiduo">
+          <Key>
+            <PropertyRef Name="TipoResiduoID" />
+          </Key>
+          <Property Name="TipoResiduoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clasificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RequiereManejoEspecial" Type="Boolean" />
+          <NavigationProperty Name="OrdenRecojo" Relationship="db_EcoReciclaModel.FK_OrdenRecojo_TipoResiduo" FromRole="TipoResiduo" ToRole="OrdenRecojo" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContraseñaHash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RolID" Type="Int32" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LogInicioSesion" Relationship="Self.FK__LogInicio__Usuar__5629CD9C" FromRole="Usuario" ToRole="LogInicioSesion" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK__Usuario__RolID__5535A963" FromRole="Usuario" ToRole="Rol" />
+          <NavigationProperty Name="UsuarioCliente" Relationship="Self.FK__UsuarioCl__Usuar__571DF1D5" FromRole="Usuario" ToRole="UsuarioCliente" />
+        </EntityType>
+        <EntityType Name="UsuarioCliente">
+          <Key>
+            <PropertyRef Name="UsuarioClienteID" />
+          </Key>
+          <Property Name="UsuarioClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="ClienteID" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__UsuarioCl__Clien__5812160E" FromRole="UsuarioCliente" ToRole="Cliente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__UsuarioCl__Usuar__571DF1D5" FromRole="UsuarioCliente" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="VehiculoID" />
+          </Key>
+          <Property Name="VehiculoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TipoVehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CapacidadTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Disponible" Type="Boolean" />
+          <NavigationProperty Name="Asignacion" Relationship="db_EcoReciclaModel.FK__Asignacio__Vehic__5DCAEF64" FromRole="Vehiculo" ToRole="Asignacion" />
+        </EntityType>
+        <Association Name="FK__OrdenReco__Clien__59063A47">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="OrdenRecojo" Type="Self.OrdenRecojo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="OrdenRecojo">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioCl__Clien__5812160E">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="UsuarioCliente" Type="Self.UsuarioCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="UsuarioCliente">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenReco__Estad__59FA5E80">
+          <End Role="EstadoOrden" Type="Self.EstadoOrden" Multiplicity="0..1" />
+          <End Role="OrdenRecojo" Type="Self.OrdenRecojo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoOrden">
+              <PropertyRef Name="EstadoOrdenID" />
+            </Principal>
+            <Dependent Role="OrdenRecojo">
+              <PropertyRef Name="EstadoOrdenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LogInicio__Usuar__5629CD9C">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="LogInicioSesion" Type="Self.LogInicioSesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="LogInicioSesion">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__RolID__5535A963">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioCl__Usuar__571DF1D5">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="UsuarioCliente" Type="Self.UsuarioCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="UsuarioCliente">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_EcoReciclaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Conductor" EntityType="Self.Conductor" />
+          <EntitySet Name="EstadoOrden" EntityType="Self.EstadoOrden" />
+          <EntitySet Name="LogInicioSesion" EntityType="Self.LogInicioSesion" />
+          <EntitySet Name="OrdenRecojo" EntityType="Self.OrdenRecojo" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoResiduo" EntityType="Self.TipoResiduo" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="UsuarioCliente" EntityType="Self.UsuarioCliente" />
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" />
+          <AssociationSet Name="FK__OrdenReco__Clien__59063A47" Association="Self.FK__OrdenReco__Clien__59063A47">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioCl__Clien__5812160E" Association="Self.FK__UsuarioCl__Clien__5812160E">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="UsuarioCliente" EntitySet="UsuarioCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenReco__Estad__59FA5E80" Association="Self.FK__OrdenReco__Estad__59FA5E80">
+            <End Role="EstadoOrden" EntitySet="EstadoOrden" />
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LogInicio__Usuar__5629CD9C" Association="Self.FK__LogInicio__Usuar__5629CD9C">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LogInicioSesion" EntitySet="LogInicioSesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__RolID__5535A963" Association="Self.FK__Usuario__RolID__5535A963">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioCl__Usuar__571DF1D5" Association="Self.FK__UsuarioCl__Usuar__571DF1D5">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioCliente" EntitySet="UsuarioCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenRecojo_TipoResiduo" Association="db_EcoReciclaModel.FK_OrdenRecojo_TipoResiduo">
+            <End Role="TipoResiduo" EntitySet="TipoResiduo" />
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+          </AssociationSet>
+          <EntitySet Name="Turno" EntityType="db_EcoReciclaModel.Turno" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(db_EcoReciclaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(db_EcoReciclaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Asignacion" EntityType="db_EcoReciclaModel.Asignacion" />
+          <AssociationSet Name="FK__Asignacio__Condu__5EBF139D" Association="db_EcoReciclaModel.FK__Asignacio__Condu__5EBF139D">
+            <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asignacio__Orden__5CD6CB2B" Association="db_EcoReciclaModel.FK__Asignacio__Orden__5CD6CB2B">
+            <End Role="OrdenRecojo" EntitySet="OrdenRecojo" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asignacio__Vehic__5DCAEF64" Association="db_EcoReciclaModel.FK__Asignacio__Vehic__5DCAEF64">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asignacion_Turno" Association="db_EcoReciclaModel.FK_Asignacion_Turno">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Asignacion" EntitySet="Asignacion" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_OrdenRecojo_TipoResiduo">
+          <End Type="db_EcoReciclaModel.TipoResiduo" Role="TipoResiduo" Multiplicity="0..1" />
+          <End Type="db_EcoReciclaModel.OrdenRecojo" Role="OrdenRecojo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoResiduo">
+              <PropertyRef Name="TipoResiduoID" />
+            </Principal>
+            <Dependent Role="OrdenRecojo">
+              <PropertyRef Name="TipoResiduoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="TurnoID" />
+          </Key>
+          <Property Name="TurnoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HorarioInicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="HorarioFin" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Asignacion" Relationship="db_EcoReciclaModel.FK_Asignacion_Turno" FromRole="Turno" ToRole="Asignacion" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Asignacion">
+          <Key>
+            <PropertyRef Name="AsignacionID" />
+          </Key>
+          <Property Name="AsignacionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrdenID" Type="Int32" />
+          <Property Name="VehiculoID" Type="Int32" />
+          <Property Name="ConductorID" Type="Int32" />
+          <Property Name="TurnoID" Type="Int32" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Conductor" Relationship="db_EcoReciclaModel.FK__Asignacio__Condu__5EBF139D" FromRole="Asignacion" ToRole="Conductor" />
+          <NavigationProperty Name="OrdenRecojo" Relationship="db_EcoReciclaModel.FK__Asignacio__Orden__5CD6CB2B" FromRole="Asignacion" ToRole="OrdenRecojo" />
+          <NavigationProperty Name="Vehiculo" Relationship="db_EcoReciclaModel.FK__Asignacio__Vehic__5DCAEF64" FromRole="Asignacion" ToRole="Vehiculo" />
+          <NavigationProperty Name="Turno" Relationship="db_EcoReciclaModel.FK_Asignacion_Turno" FromRole="Asignacion" ToRole="Turno" />
+        </EntityType>
+        <Association Name="FK__Asignacio__Condu__5EBF139D">
+          <End Type="db_EcoReciclaModel.Conductor" Role="Conductor" Multiplicity="0..1" />
+          <End Type="db_EcoReciclaModel.Asignacion" Role="Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="ConductorID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="ConductorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asignacio__Orden__5CD6CB2B">
+          <End Type="db_EcoReciclaModel.OrdenRecojo" Role="OrdenRecojo" Multiplicity="0..1" />
+          <End Type="db_EcoReciclaModel.Asignacion" Role="Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenRecojo">
+              <PropertyRef Name="OrdenID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="OrdenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asignacio__Vehic__5DCAEF64">
+          <End Type="db_EcoReciclaModel.Vehiculo" Role="Vehiculo" Multiplicity="0..1" />
+          <End Type="db_EcoReciclaModel.Asignacion" Role="Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="VehiculoID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="VehiculoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asignacion_Turno">
+          <End Type="db_EcoReciclaModel.Turno" Role="Turno" Multiplicity="1" />
+          <End Type="db_EcoReciclaModel.Asignacion" Role="Asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="TurnoID" />
+            </Principal>
+            <Dependent Role="Asignacion">
+              <PropertyRef Name="TurnoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_EcoReciclaModelStoreContainer" CdmEntityContainer="db_EcoReciclaEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conductor">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Conductor">
+              <MappingFragment StoreEntitySet="Conductor">
+                <ScalarProperty Name="ConductorID" ColumnName="ConductorID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Licencia" ColumnName="Licencia" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoOrden">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.EstadoOrden">
+              <MappingFragment StoreEntitySet="EstadoOrden">
+                <ScalarProperty Name="EstadoOrdenID" ColumnName="EstadoOrdenID" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogInicioSesion">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.LogInicioSesion">
+              <MappingFragment StoreEntitySet="LogInicioSesion">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="DireccionIP" ColumnName="DireccionIP" />
+                <ScalarProperty Name="Exito" ColumnName="Exito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenRecojo">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.OrdenRecojo">
+              <MappingFragment StoreEntitySet="OrdenRecojo">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="TipoResiduoID" ColumnName="TipoResiduoID" />
+                <ScalarProperty Name="OrdenID" ColumnName="OrdenID" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="FechaRecojo" ColumnName="FechaRecojo" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="EstadoOrdenID" ColumnName="EstadoOrdenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoResiduo">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.TipoResiduo">
+              <MappingFragment StoreEntitySet="TipoResiduo">
+                <ScalarProperty Name="TipoResiduoID" ColumnName="TipoResiduoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RequiereManejoEspecial" ColumnName="RequiereManejoEspecial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="ContraseñaHash" ColumnName="ContraseñaHash" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioCliente">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.UsuarioCliente">
+              <MappingFragment StoreEntitySet="UsuarioCliente">
+                <ScalarProperty Name="UsuarioClienteID" ColumnName="UsuarioClienteID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculo">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Vehiculo">
+              <MappingFragment StoreEntitySet="Vehiculo">
+                <ScalarProperty Name="VehiculoID" ColumnName="VehiculoID" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="CapacidadTotal" ColumnName="CapacidadTotal" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turno">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Turno">
+              <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="HorarioFin" ColumnName="HorarioFin" />
+                <ScalarProperty Name="HorarioInicio" ColumnName="HorarioInicio" />
+                <ScalarProperty Name="TurnoID" ColumnName="TurnoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="db_EcoReciclaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="db_EcoReciclaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="db_EcoReciclaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="db_EcoReciclaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_EcoReciclaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="db_EcoReciclaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_EcoReciclaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="db_EcoReciclaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="db_EcoReciclaModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Asignacion">
+            <EntityTypeMapping TypeName="db_EcoReciclaModel.Asignacion">
+              <MappingFragment StoreEntitySet="Asignacion">
+                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+                <ScalarProperty Name="TurnoID" ColumnName="TurnoID" />
+                <ScalarProperty Name="ConductorID" ColumnName="ConductorID" />
+                <ScalarProperty Name="VehiculoID" ColumnName="VehiculoID" />
+                <ScalarProperty Name="OrdenID" ColumnName="OrdenID" />
+                <ScalarProperty Name="AsignacionID" ColumnName="AsignacionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
