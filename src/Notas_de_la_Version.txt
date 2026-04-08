@@ -1,0 +1,16 @@
+//NOTAS DE LA VERSION
+
+- Se ha migrado al modelo de 3 capas.
+
+
+- Ya se realizó la integración con la base de datos por EF. En este caso el nombre de la base de datos es "db_EcoRecicla".
+
+- Módulo Clientes 100% operativo (El módulo clientes puede Registrar, Modificar y Eliminar datos de la base de datos).
+
+- Módulo Vehiculos 100% operativo (El módulo clientes puede Registrar, Modificar y Eliminar datos de la base de datos).
+
+- Módulo Conductores 100% operativo (El módulo clientes puede Registrar, Modificar y Eliminar datos de la base de datos).
+
+- Módulo Asignaciones 100% operativo
+
+- Módulo Reportes 100% operativo
